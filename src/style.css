@@ -1,0 +1,259 @@
+:root {
+  font-family: Inter, "Segoe UI", Arial, sans-serif;
+  color: #f7f2e8;
+  background: #0d1714;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  --cream: #f7f2e8;
+  --gold: #f0bd45;
+  --forest: #0d1714;
+  --muted: #b9c3b8;
+  --panel: rgba(14, 25, 21, .91);
+  --line: rgba(255, 255, 255, .13);
+  --hud-shadow: 0 14px 42px rgba(3, 10, 8, .25);
+}
+
+* { box-sizing: border-box; }
+html, body, #app { width: 100%; height: 100%; margin: 0; overflow: hidden; }
+body { background: var(--forest); }
+button { color: inherit; font: inherit; }
+.game-shell { position: relative; width: 100%; height: 100%; min-height: 360px; overflow: hidden; background: #b8c5c2; isolation: isolate; }
+#game-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; outline: none; touch-action: none; }
+
+.topbar {
+  position: absolute; z-index: 4; inset: 0 0 auto; min-height: 68px; padding: 12px 24px;
+  display: flex; align-items: center; gap: 18px;
+  background: linear-gradient(180deg, rgba(10, 19, 16, .94), rgba(10, 19, 16, .62) 72%, transparent);
+}
+.brand-lockup { display: flex; align-items: center; gap: 11px; min-width: 240px; }
+.brand-mark { width: 42px; height: 42px; display: grid; place-items: center; border-radius: 13px; background: var(--gold); color: #18221c; font-size: 15px; font-weight: 900; letter-spacing: -.07em; box-shadow: 0 5px 16px #0002; }
+.brand-lockup strong { display: block; color: var(--cream); font-size: 14px; font-weight: 850; letter-spacing: .11em; }
+.brand-lockup span { display: block; margin-top: 4px; color: #c3cabf; font-size: 10px; letter-spacing: .025em; }
+.prototype-tag { margin: auto; color: #ece8db; font-size: 11px; font-weight: 600; letter-spacing: .045em; text-transform: uppercase; }
+.prototype-tag i, .status-light, .eyebrow-dot { display: inline-block; width: 7px; height: 7px; margin-right: 8px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 11px #e8b84780; }
+.prototype-tag span { color: #b5beb2; }
+.icon-button, .install-button { border: 1px solid #ffffff30; border-radius: 13px; background: rgba(17, 30, 25, .94); color: var(--cream); cursor: pointer; box-shadow: 0 7px 20px #0002; transition: background .15s, transform .15s; }
+.icon-button:hover, .install-button:hover { background: #263a30; }
+.icon-button:active, .install-button:active { transform: translateY(1px); }
+.icon-button { width: 44px; height: 44px; font-size: 16px; }
+.install-button { padding: 11px 14px; font-size: 12px; font-weight: 700; }
+.install-button[hidden] { display: none; }
+
+.street-banner {
+  position: absolute; z-index: 2; top: 84px; left: 50%; min-width: 274px; padding: 10px 19px 9px;
+  transform: translateX(-50%); border: 1px solid #ffffff4d; border-radius: 11px;
+  background: linear-gradient(145deg, rgba(39, 94, 119, .96), rgba(22, 62, 81, .96));
+  box-shadow: var(--hud-shadow); text-align: center; color: #fff8e9; text-shadow: 0 1px 2px #071d29; pointer-events: none;
+}
+.street-banner::before { content: ""; position: absolute; inset: 4px; border: 1px solid #ffffff32; border-radius: 7px; }
+.street-banner small, .street-banner strong, .street-banner span { position: relative; display: block; }
+.street-banner small { color: #d4e1df; font-size: 8px; font-weight: 700; letter-spacing: .15em; }
+.street-banner strong { margin-top: 4px; font-size: 14px; font-weight: 850; letter-spacing: .055em; }
+.street-banner span { margin-top: 4px; font-size: 9px; letter-spacing: .07em; }
+.street-banner b { padding: 0 7px; color: #ffd05b; }
+
+.mission-card, .wallet-card, .speed-card, .route-map-card {
+  position: absolute; z-index: 2; border: 1px solid var(--line); background: var(--panel);
+  box-shadow: var(--hud-shadow); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+}
+.mission-card { top: 96px; left: 24px; width: min(340px, calc(100vw - 48px)); padding: 19px 20px 16px; border-radius: 19px; }
+.eyebrow { display: flex; align-items: center; color: var(--gold); font-size: 9px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
+.eyebrow-dot { width: 6px; height: 6px; }
+.mission-card h1 { margin: 12px 0 7px; max-width: 290px; color: #fff9ee; font-size: 21px; line-height: 1.14; font-weight: 800; letter-spacing: -.045em; }
+.mission-card p { margin: 0; color: #c7cfc4; font-size: 12px; line-height: 1.55; }
+.mission-route { display: flex; align-items: center; gap: 11px; margin-top: 16px; color: #f3eddf; font-size: 9px; font-weight: 800; letter-spacing: .08em; }
+.route-line { height: 1px; flex: 1; background: linear-gradient(90deg, var(--gold), #ffffff36); }
+.local-note { margin-top: 13px; padding-top: 10px; border-top: 1px solid #ffffff18; color: #aeb9ac; font-size: 9px; line-height: 1.45; }
+
+.wallet-card { top: 96px; right: 24px; width: 178px; padding: 15px 16px 14px; border-radius: 17px; }
+.wallet-label { color: #b8c2b5; font-size: 9px; font-weight: 750; letter-spacing: .14em; }
+.wallet-card strong { display: block; margin: 5px 0 14px; color: #fff8eb; font-size: 27px; font-weight: 850; letter-spacing: -.045em; font-variant-numeric: tabular-nums; }
+.fuel-row { display: flex; justify-content: space-between; color: #bdc7ba; font-size: 10px; }
+.fuel-track { height: 5px; margin-top: 8px; overflow: hidden; border-radius: 8px; background: #ffffff24; }
+.fuel-track span { display: block; width: 82%; height: 100%; border-radius: inherit; background: linear-gradient(90deg, #dca834, #ffd15a); transition: width .25s; }
+
+.speed-card { right: 26px; bottom: 93px; width: 126px; min-height: 100px; padding: 15px 16px; display: grid; grid-template-columns: auto 1fr; align-content: center; align-items: end; column-gap: 7px; border-radius: 18px; }
+.speed-card strong { color: #fff8eb; font-size: 42px; line-height: .88; font-weight: 850; letter-spacing: -.075em; font-variant-numeric: tabular-nums; }
+.speed-card span { padding-bottom: 3px; color: #d6ddd1; font-size: 10px; }
+.speed-card small { grid-column: 1 / -1; margin-top: 11px; color: #b4beb2; font-size: 8px; font-weight: 800; letter-spacing: .16em; }
+
+.route-map-card { left: 24px; bottom: 68px; width: 190px; padding: 9px 11px 8px; border-radius: 14px; }
+.route-map-heading { display: flex; align-items: center; justify-content: space-between; color: #eee8dc; font-size: 8px; font-weight: 800; letter-spacing: .09em; }
+.route-map-heading b { color: var(--gold); font-size: 9px; font-variant-numeric: tabular-nums; }
+.route-map-card svg { display: block; width: 100%; height: 63px; margin-top: 4px; overflow: visible; }
+.route-map-card path { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.route-map-card #route-map-halo { stroke: #101c18; stroke-width: 8; }
+.route-map-card #route-map-path { stroke: #efbd4e; stroke-width: 3; }
+.route-map-card circle { stroke: #f8f1e4; stroke-width: 1.6; }
+.route-map-card #route-map-start { fill: #769e75; }
+.route-map-card #route-map-end { fill: #cf6953; }
+.route-map-card #route-map-player { fill: #fff7e7; stroke: #efbd4e; stroke-width: 2.5; filter: drop-shadow(0 0 3px #efbd4e); }
+.route-map-footer { display: flex; align-items: center; color: #c0c8ba; font-size: 7px; font-weight: 750; letter-spacing: .06em; }
+.route-map-footer small { margin-left: auto; color: #ffffff9a; font-size: 6px; font-weight: 500; letter-spacing: 0; }
+
+.bottom-info { position: absolute; z-index: 2; left: 24px; bottom: 22px; display: flex; align-items: center; color: #f2efdf; font-size: 9px; text-shadow: 0 2px 6px #1118; }
+.status-light { width: 6px; height: 6px; margin-right: 8px; background: #91c18d; box-shadow: 0 0 9px #91c18d; }
+.separator { margin: 0 8px; color: var(--gold); }
+.desktop-help { position: absolute; right: 24px; bottom: 24px; color: #f0eddf; font-size: 9px; text-shadow: 0 2px 6px #1118; }
+.toast { position: absolute; z-index: 6; left: 50%; bottom: 82px; max-width: min(460px, calc(100vw - 32px)); padding: 11px 17px; transform: translate(-50%, 12px); opacity: 0; border: 1px solid #ffffff25; border-radius: 30px; background: #14231ff2; color: #fff3de; font-size: 12px; text-align: center; pointer-events: none; transition: opacity .2s, transform .2s; }
+.toast.visible { transform: translate(-50%, 0); opacity: 1; }
+
+.touch-controls { position: absolute; z-index: 4; right: 24px; bottom: max(15px, env(safe-area-inset-bottom)); left: 24px; display: none; justify-content: space-between; align-items: end; pointer-events: none; }
+.steering-pad, .pedal-pad { display: flex; align-items: end; gap: 9px; pointer-events: auto; }
+.touch-controls button { border: 1px solid #ffffff37; background: rgba(16, 29, 24, .92); color: #fff6e5; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); touch-action: none; user-select: none; -webkit-user-select: none; box-shadow: 0 8px 22px #0003; }
+.steering-pad button { width: 54px; height: 54px; border-radius: 17px; font-size: 27px; font-weight: 500; }
+.pedal-pad button { min-width: 65px; height: 52px; padding: 0 11px; border-radius: 15px; font-size: 8px; font-weight: 850; letter-spacing: .07em; }
+.pedal-pad .accelerator { min-width: 100px; height: 60px; border-color: #f1c553; background: linear-gradient(150deg, #f3ca5e, #d9a934); color: #1a241d; }
+.pedal-pad .horn-button { min-width: 58px; }
+.touch-controls button.pressed { transform: translateY(2px) scale(.97); background: #edc45de8; color: #16211c; }
+
+.pause-overlay { position: absolute; z-index: 8; inset: 0; display: grid; place-items: center; background: #0b1512ad; backdrop-filter: blur(7px); }
+.pause-overlay.hidden { display: none; }
+.pause-panel { width: min(360px, calc(100% - 32px)); padding: 29px; border: 1px solid #ffffff2e; border-radius: 22px; background: #13211df2; text-align: center; box-shadow: 0 24px 80px #0006; }
+.pause-panel h2 { margin: 10px 0 5px; font-size: 30px; font-weight: 850; }
+.pause-panel p { color: #c1c9bd; font-size: 13px; line-height: 1.5; }
+.primary-button { margin-top: 13px; padding: 12px 19px; border: 0; border-radius: 12px; background: var(--gold); color: #13211d; font-weight: 800; cursor: pointer; }
+
+@media (pointer: coarse), (max-width: 760px) {
+  .touch-controls { display: flex; }
+  .desktop-help { display: none; }
+  .topbar { min-height: 62px; padding: 9px 14px; gap: 8px; }
+  .brand-lockup { min-width: 0; gap: 9px; }
+  .brand-mark { width: 38px; height: 38px; border-radius: 12px; font-size: 14px; }
+  .brand-lockup strong { font-size: 12px; }
+  .brand-lockup span { margin-top: 3px; font-size: 9px; }
+  .prototype-tag { display: none; }
+  .icon-button { width: 42px; height: 42px; }
+  .street-banner { top: 70px; min-width: 220px; padding: 8px 13px 7px; }
+  .street-banner strong { font-size: 12px; }
+  .street-banner small { font-size: 7px; }
+  .street-banner span { font-size: 8px; }
+  .mission-card { top: 145px; left: 14px; width: min(330px, calc(100vw - 166px)); min-width: 176px; padding: 13px 14px 12px; border-radius: 16px; }
+  .eyebrow { font-size: 8px; letter-spacing: .12em; }
+  .mission-card h1 { margin: 9px 0 5px; font-size: 16px; }
+  .mission-card p { font-size: 10px; line-height: 1.42; }
+  .mission-route { gap: 7px; margin-top: 11px; font-size: 7px; }
+  .local-note { display: none; }
+  .wallet-card { top: 145px; right: 14px; width: 136px; padding: 11px 12px; border-radius: 15px; }
+  .wallet-label { font-size: 8px; }
+  .wallet-card strong { margin: 4px 0 9px; font-size: 20px; }
+  .fuel-row { font-size: 9px; }
+  .fuel-track { height: 4px; margin-top: 6px; }
+  .route-map-card { left: 14px; bottom: 91px; width: 142px; padding: 7px 8px 6px; }
+  .route-map-heading { font-size: 6px; }
+  .route-map-heading b { font-size: 7px; }
+  .route-map-card svg { height: 47px; margin-top: 2px; }
+  .route-map-footer { font-size: 5px; }
+  .route-map-footer small { display: none; }
+  .speed-card { right: 14px; bottom: 92px; width: 94px; min-height: 76px; padding: 10px 11px; border-radius: 15px; }
+  .speed-card strong { font-size: 32px; }
+  .speed-card span { font-size: 9px; }
+  .speed-card small { margin-top: 7px; font-size: 7px; }
+  .bottom-info { left: 14px; right: 14px; bottom: 76px; max-width: none; justify-content: center; font-size: 8px; }
+  .touch-controls { right: 12px; bottom: max(12px, env(safe-area-inset-bottom)); left: 12px; }
+  .steering-pad, .pedal-pad { gap: 6px; }
+  .steering-pad button { width: 46px; height: 46px; border-radius: 14px; font-size: 24px; }
+  .pedal-pad button { min-width: 52px; height: 46px; padding: 0 8px; border-radius: 13px; font-size: 7px; }
+  .pedal-pad .accelerator { min-width: 84px; height: 53px; }
+  .pedal-pad .horn-button { min-width: 47px; }
+  .toast { bottom: 154px; font-size: 10px; }
+}
+
+@media (pointer: coarse) and (min-width: 761px) {
+  .mission-card { top: 154px; left: 18px; width: min(350px, 38vw); }
+  .wallet-card { top: 154px; right: 18px; }
+  .street-banner { top: 74px; }
+  .route-map-card { left: 18px; bottom: 91px; width: 165px; }
+  .bottom-info { left: 190px; right: 190px; bottom: 20px; justify-content: center; }
+}
+
+@media (max-width: 420px) {
+  .mission-card { width: calc(100vw - 158px); min-width: 0; padding: 11px 11px 10px; }
+  .mission-card h1 { font-size: 14px; }
+  .mission-card p { font-size: 9px; }
+  .mission-route { gap: 5px; margin-top: 9px; font-size: 6px; }
+  .wallet-card { right: 10px; width: 126px; padding: 10px; }
+  .route-map-card { width: 128px; }
+  .speed-card { right: 10px; width: 87px; min-height: 71px; }
+  .bottom-info { bottom: 71px; font-size: 7px; }
+  .separator { margin: 0 5px; }
+  .touch-controls { right: 9px; left: 9px; }
+  .steering-pad button { width: 43px; height: 44px; }
+  .pedal-pad { gap: 4px; }
+  .pedal-pad button { min-width: 43px; height: 43px; padding: 0 5px; font-size: 6px; }
+  .pedal-pad .accelerator { min-width: 76px; height: 50px; }
+  .pedal-pad .horn-button { min-width: 40px; }
+}
+
+@media (max-height: 560px) and (pointer: coarse) {
+  .topbar { min-height: 54px; padding-top: 6px; padding-bottom: 6px; }
+  .brand-mark { width: 34px; height: 34px; }
+  .street-banner { top: 58px; padding: 6px 12px 5px; }
+  .street-banner strong { margin-top: 2px; font-size: 10px; }
+  .mission-card { top: 127px; padding: 9px 11px; }
+  .mission-card h1 { margin: 6px 0 3px; font-size: 13px; }
+  .mission-card p { font-size: 8px; }
+  .mission-route { margin-top: 7px; }
+  .wallet-card { top: 127px; padding: 9px 10px; }
+  .wallet-card strong { margin-bottom: 6px; font-size: 17px; }
+  .speed-card { bottom: 70px; }
+  .route-map-card { display: none; }
+  .bottom-info { display: none; }
+  .touch-controls { bottom: max(8px, env(safe-area-inset-bottom)); }
+  .steering-pad button { width: 40px; height: 40px; }
+  .pedal-pad button { height: 40px; }
+  .pedal-pad .accelerator { height: 46px; }
+  .toast { bottom: 122px; }
+}
+
+@supports (height: 100dvh) {
+  html, body, #app, .game-shell { height: 100dvh; }
+}
+
+/* Driving HUD: small peripheral panels keep the road in the visual focus. */
+.mission-card {
+  top: 82px; left: 16px; width: min(270px, calc(100vw - 340px)); min-width: 230px;
+  padding: 13px 15px 12px; border-radius: 14px; background: rgba(14, 25, 21, .84);
+}
+.mission-card h1 { margin: 8px 0 5px; font-size: 17px; }
+.mission-card p { font-size: 11px; line-height: 1.4; }
+.mission-route { margin-top: 10px; font-size: 8px; }
+.local-note { display: none; }
+.wallet-card { top: 82px; right: 16px; width: 145px; padding: 12px 13px 11px; border-radius: 14px; background: rgba(14, 25, 21, .84); }
+.wallet-card strong { margin: 4px 0 9px; font-size: 23px; }
+.street-banner { top: 76px; }
+.route-map-card { left: 16px; bottom: 62px; width: 154px; padding: 8px 10px 7px; background: rgba(14, 25, 21, .84); }
+.route-map-card svg { height: 48px; }
+.speed-card { right: 16px; bottom: 68px; width: 110px; min-height: 78px; padding: 12px 13px; background: rgba(14, 25, 21, .84); }
+.speed-card strong { font-size: 36px; }
+.speed-card small { margin-top: 8px; }
+.bottom-info { left: 16px; bottom: 16px; }
+
+@media (pointer: coarse), (max-width: 760px) {
+  .street-banner { top: 66px; min-width: 206px; }
+  .mission-card {
+    top: 121px; left: 12px; width: min(250px, calc(100vw - 150px)); min-width: 150px;
+    min-height: 47px; padding: 10px 12px; border-radius: 12px;
+  }
+  .mission-card .eyebrow, .mission-card p, .mission-route { display: none; }
+  .mission-card h1 { margin: 0; font-size: 13px; line-height: 1.25; letter-spacing: -.02em; }
+  .wallet-card { top: 121px; right: 12px; width: 118px; padding: 9px 10px; }
+  .wallet-label { font-size: 7px; }
+  .wallet-card strong { margin: 3px 0 6px; font-size: 18px; }
+  .fuel-row { font-size: 8px; }
+  .route-map-card { left: 12px; bottom: 87px; width: 128px; padding: 7px 8px 6px; }
+  .route-map-card svg { height: 39px; }
+  .speed-card { right: 12px; bottom: 87px; width: 88px; min-height: 68px; padding: 9px 10px; }
+  .speed-card strong { font-size: 30px; }
+  .speed-card small { margin-top: 6px; font-size: 6px; }
+  .bottom-info { bottom: 70px; font-size: 7px; }
+}
+
+@media (max-height: 560px) and (pointer: coarse) {
+  .street-banner { top: 58px; }
+  .mission-card, .wallet-card { top: 108px; }
+  .route-map-card { display: none; }
+  .speed-card { bottom: 63px; }
+  .bottom-info { display: none; }
+}

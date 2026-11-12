@@ -1,0 +1,16 @@
+{
+  "id": "./",
+  "name": "MWENDESHA — Taxi à Lubumbashi",
+  "short_name": "MWENDESHA",
+  "description": "Prototype de simulation de taxi inspiré du quotidien de Lubumbashi.",
+  "lang": "fr-CD",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "landscape",
+  "background_color": "#101c18",
+  "theme_color": "#101c18",
+  "icons": [
+    { "src": "./mwendesha-icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
