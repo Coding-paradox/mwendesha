@@ -4,3 +4,12 @@ dist/
 .env.*
 !.env.example
 *.tsbuildinfo
+
+# Assets non redistribuables ou inutiles
+src/assets/*.zip
+src/assets/*.crdownload
+src/assets/traffic_racer_npc_vehicles_pack.glb
+src/assets/1982_toyota_hiace_combi.glb
+src/assets/2005_toyota_hiace.glb
+src/assets/2014_kia_morning_picanto.glb
+src/assets/models/lushois-yellow-hatchback.glb

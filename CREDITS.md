@@ -1,6 +1,6 @@
 # MWENDESHA — crédits et registre des assets
 
-Inventaire relevé dans `src/assets/` le 13 novembre 2026. Aucune archive ni ressource n'a été supprimée, déplacée ou modifiée pendant cet audit. Aucun historique des éventuelles modifications antérieures des modèles téléchargés n'a été trouvé : « modifications éventuelles » reste À VALIDER lorsqu'aucune mention explicite ne figure dans l'archive. Les licences ci-dessous proviennent des `license.txt` joints ou des métadonnées GLB lorsqu'elles existent. Une ligne « Utilisable » suppose l'attribution CC-BY requise et la conservation de cet enregistrement.
+Inventaire relevé dans `src/assets/` le 13 novembre 2026, avant le nettoyage Git décrit ci-dessous. Les tailles et chemins de l’inventaire exhaustif sont un instantané de cet état initial; les fichiers explicitement non redistribuables ou en attente ont ensuite été retirés de l’index sans suppression locale. Aucun historique des éventuelles modifications antérieures des modèles téléchargés n'a été trouvé : « modifications éventuelles » reste À VALIDER lorsqu'aucune mention explicite ne figure dans l'archive. Les licences ci-dessous proviennent des `license.txt` joints ou des métadonnées GLB lorsqu'elles existent. Une ligne « Utilisable » suppose l'attribution CC-BY requise et la conservation de cet enregistrement.
 
 > **Règle d'usage :** intégrer dans le jeu uniquement les assets marqués **Utilisable**. « Interdit » signifie que la licence exclut l'usage prévu (NC) ou les modifications (ND). « À valider » signifie que la licence ou la provenance ne permet pas encore de trancher.
 
@@ -8,8 +8,8 @@ Inventaire relevé dans `src/assets/` le 13 novembre 2026. Aucune archive ni res
 
 | Fichier | Modèle | Auteur | Licence exacte | Lien | Statut d'usage | Notes |
 |---|---|---|---|---|---|---|
-| `kenney_city-kit-commercial_2.1/` (+ copie `models/raw/kenney_city-kit-commercial_2.1/`) | City Kit Commercial 2.1 | Kenney | CC0 1.0 | [kenney.nl/assets/city-kit-commercial](https://kenney.nl/assets/city-kit-commercial) | Utilisable | Licence locale `License.txt`; usage commercial et modification autorisés; attribution facultative. Pack générique, non spécifique à Lubumbashi. |
-| `kenney_city-kit-roads/` (+ copie `models/raw/kenney_city-kit-roads/`) | City Kit Roads 2.2 | Kenney | CC0 1.0 | [kenney.nl/assets/city-kit-roads](https://kenney.nl/assets/city-kit-roads) | Utilisable | Licence locale `License.txt`; usage commercial et modification autorisés; attribution facultative. |
+| `models/raw/kenney_city-kit-commercial_2.1/` | City Kit Commercial 2.1 | Kenney | CC0 1.0 | [kenney.nl/assets/city-kit-commercial](https://kenney.nl/assets/city-kit-commercial) | Utilisable | Licence locale `License.txt`; usage commercial et modification autorisés; attribution facultative. Pack générique, non spécifique à Lubumbashi. |
+| `models/raw/kenney_city-kit-roads/` | City Kit Roads 2.2 | Kenney | CC0 1.0 | [kenney.nl/assets/city-kit-roads](https://kenney.nl/assets/city-kit-roads) | Utilisable | Licence locale `License.txt`; usage commercial et modification autorisés; attribution facultative. |
 | `../public/assets/models/midcity_buildings.glb` | Midcity Buildings Set - Low Poly model | Daniel Zhabotinsky | CC BY 4.0 | [Sketchfab](https://sketchfab.com/3d-models/midcity-buildings-set-low-poly-model-d5cbc471d20c4c9da31c3df656648916) | Utilisable | Métadonnées GLB confirment titre, auteur, licence et URL. Attribuer l'auteur et signaler toute modification. Architecture générique, pas une reproduction documentée de Lubumbashi. |
 | `1982_toyota_hiace_combi.glb` + `1982_toyota_hiace_combi.zip` | 1982 Toyota Hiace Combi | OUTPISTON | CC BY-NC-SA 4.0 | [Sketchfab](https://sketchfab.com/3d-models/1982-toyota-hiace-combi-b9c67110c193424c90f058192ead605f) | Interdit | Licence exclut l'usage commercial; téléchargements GLB et ZIP. |
 | `2005_toyota_hiace.glb` + `2005_toyota_hiace.zip` | 2005 Toyota HiAce | ActsOfDoge | Sketchfab Standard | [Sketchfab](https://sketchfab.com/3d-models/2005-toyota-hiace-c8a13f7fa53e45a2b151339d402f3392) | À valider | Métadonnées et `license.txt` donnent le nom Standard, mais droits/conditions à confirmer pour le projet et sa redistribution. |
@@ -30,7 +30,7 @@ Inventaire relevé dans `src/assets/` le 13 novembre 2026. Aucune archive ni res
 
 ## Contrôle des dossiers compressés
 
-Les 11 archives ZIP ont été ouvertes en lecture seule. Chacune des 11 contient un `license.txt`; leurs informations sont reportées dans le registre pour les modèles correspondants. Aucune archive n'a été extraite ni modifiée pendant l'audit. Les deux dossiers Kenney contiennent leurs licences locales. Les autres GLB du kit Kenney sont rattachés à la licence du kit parent. Les deux arbres `kenney-nature-kit` n'ont pas de fichier licence local : statut « À valider ».
+Les 11 archives ZIP ont été ouvertes en lecture seule. Chacune des 11 contient un `license.txt`; leurs informations sont reportées dans le registre pour les modèles correspondants. Aucune archive n'a été extraite ni modifiée pendant l'audit. Les deux dossiers Kenney contiennent leurs licences locales. Les autres GLB du kit Kenney sont rattachés à la licence du kit parent. Les arbres `kenney-nature-kit/tree_oak.glb` et `tree_palm.glb` sont sous CC0 1.0 selon la page officielle [Kenney Nature Kit](https://kenney.nl/assets/nature-kit) : usage commercial et modification autorisés, statut **Utilisable**.
 
 ## Éléments lourds (> 5 Mio)
 
@@ -57,7 +57,7 @@ Méthode proposée (non exécutée) : dupliquer les GLB dans un dossier de trava
 
 ## Usage actuel à surveiller
 
-La course active charge MidCity, les arbres Kenney Nature sous CC0 et le sous-modèle Taxi du pack CC BY 4.0 enregistré ci-dessus. `2014_kia_morning_picanto.glb` et `models/lushois-yellow-hatchback.glb` restent inutilisés parce que leur provenance/licence est à valider. Le pack de personnages n'est pas utilisé : les modèles présents sont des personnages d'archétype de jeu et ne constituent pas une représentation validée de la population lushoise.
+La course active charge MidCity, les arbres Kenney Nature sous CC0 et le sous-modèle Taxi du pack CC BY 4.0 enregistré ci-dessus. `2014_kia_morning_picanto.glb` et `models/lushois-yellow-hatchback.glb` restent inutilisés; leur provenance ou licence est à valider. Les modèles NC et Sketchfab Standard ne sont pas chargés. Le pack de personnages n'est pas utilisé : les modèles présents sont des personnages d'archétype de jeu et ne constituent pas une représentation validée de la population lushoise.
 
 ## Écran Crédits (plus tard)
 
@@ -1521,3 +1521,18 @@ Nombre de fichiers inventoriés : 1 441. Taille cumulée : 218 664 599 octets (2
 | `kenney_city-kit-commercial_2.1/` | 219 | 11 190 670 octets (10,67 Mio) |
 | `kenney_city-kit-roads/` | 487 | 7 014 570 octets (6,69 Mio) |
 | `models/` (dont copie `models/raw/`) | 710 | 18 324 373 octets (17,48 Mio) |
+
+
+## Nettoyage du suivi Git — 13 novembre 2026
+
+Les fichiers ci-dessous sont conservés dans le dossier de travail local, mais ne sont plus versionnés. Ils sont ignorés par `.gitignore` :
+
+- `src/assets/traffic_racer_npc_vehicles_pack.glb` : CC BY-NC 4.0, usage commercial interdit.
+- `src/assets/1982_toyota_hiace_combi.glb` : CC BY-NC-SA 4.0, usage commercial interdit.
+- `src/assets/2005_toyota_hiace.glb` : Sketchfab Standard, redistribution du fichier source non autorisée/à valider.
+- `src/assets/2014_kia_morning_picanto.glb` : provenance douteuse (`notmymodel`), autorisation à valider.
+- `src/assets/models/lushois-yellow-hatchback.glb` : provenance et licence à valider.
+- `src/assets/*.zip` : archives redondantes des modèles extraits; seule la version GLB documentée pouvait être candidate à l’usage.
+- `src/assets/*.crdownload` : téléchargement incomplet, inutilisable.
+
+Les ZIP et GLB listés ici n’ont pas été effacés du disque. Les copies Kenney redondantes à la racine `src/assets/kenney_city-kit-commercial_2.1/` et `src/assets/kenney_city-kit-roads/` ont été retirées du dépôt; l’exemplaire conservé dans `src/assets/models/raw/` reste la copie de référence. Aucun des deux kits n’est importé directement par la scène active; les arbres utilisés viennent de `src/assets/models/vegetation/kenney-nature-kit/` et MidCity de `public/assets/models/`.
