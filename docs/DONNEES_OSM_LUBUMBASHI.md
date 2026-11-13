@@ -5,24 +5,33 @@ La voie est identifiée comme `Avenue Lumumba`, `highway=trunk`, `ref=RN1` et
 `lanes=4`. Le nœud méridional `664607363` se trouve à la sortie du rond-point
 associé à `way/52253710` (`junction=roundabout`).
 
-## Tronçon retenu
+## Tronçon retenu — coordonnées de début et de fin
 
-Itinéraire presque rectiligne vers le nord, de la sortie du rond-point au nœud
-OSM `664607359`, soit environ **642 m** calculés entre les coordonnées des
-nœuds retenus. Le nœud d’arrivée est sur Avenue Lumumba ; le nom de la voie
-transversale au croisement n’est pas confirmé par l’extrait, donc le point
-d’arrivée reste **À VALIDER sur place**.
+Tronçon nord d’Avenue Lumumba, d’environ **642,17 m** en projection métrique
+locale (jeu : 1 unité = 1 m), du nœud OSM `664607363` à `664607359`.
 
-| Ordre | Nœud OSM | Latitude | Longitude |
-|---:|---:|---:|---:|
-| 1 | 664607363 | -11.6617395 | 27.4878289 |
-| 2 | 5604124731 | -11.6617103 | 27.4878265 |
-| 3 | 664608332 | -11.6613199 | 27.4878024 |
-| 4 | 1015803514 | -11.6605479 | 27.4877156 |
-| 5 | 664607364 | -11.6589827 | 27.4875624 |
-| 6 | 2795906459 | -11.6585774 | 27.4875154 |
-| 7 | 5522084840 | -11.6573326 | 27.4874027 |
-| 8 | 664607359 | -11.6559603 | 27.4872365 |
+- **Départ :** sortie du rond-point associé à OSM way `52253710`, nœud
+  `664607363`, latitude `-11.6617395`, longitude `27.4878289`.
+- **Arrivée :** nœud `664607359`, latitude `-11.6559603`, longitude
+  `27.4872365`, toujours sur way `52253705` (Avenue Lumumba / RN1). Le nom
+  de l’axe transversal n’est pas présent dans les données conservées : le jeu
+  n’affiche donc aucun nom de carrefour à cet endroit.
+- **Intersections traversées :** l’extraction locale contient les 8 nœuds de
+  la géométrie du way, mais ne conserve pas les ways transversaux connectés à
+  chacun d’eux. Les six nœuds intermédiaires ci-dessous sont donc des sommets
+  OSM de la ligne ; leur statut d’intersection et tout nom d’avenue croisée
+  restent **À VALIDER**. Aucun carrefour intermédiaire n’est inventé.
+
+| Ordre | Nœud OSM | Latitude | Longitude | Statut d’intersection |
+|---:|---:|---:|---:|---|
+| 1 | 664607363 | -11.6617395 | 27.4878289 | Départ, sortie du rond-point associé |
+| 2 | 5604124731 | -11.6617103 | 27.4878265 | Sommet de way ; croisement non vérifié |
+| 3 | 664608332 | -11.6613199 | 27.4878024 | Sommet de way ; croisement non vérifié |
+| 4 | 1015803514 | -11.6605479 | 27.4877156 | Sommet de way ; croisement non vérifié |
+| 5 | 664607364 | -11.6589827 | 27.4875624 | Sommet de way ; croisement non vérifié |
+| 6 | 2795906459 | -11.6585774 | 27.4875154 | Sommet de way ; croisement non vérifié |
+| 7 | 5522084840 | -11.6573326 | 27.4874027 | Sommet de way ; croisement non vérifié |
+| 8 | 664607359 | -11.6559603 | 27.4872365 | Arrivée ; axe transversal non nommé |
 
 Les nœuds et leurs coordonnées sont conservés dans
 [`avenueLumumba.ts`](../src/data/routes/avenueLumumba.ts). La scène projette
@@ -32,6 +41,10 @@ main.
 ## Contrôle qualité
 
 - Nœuds de la géométrie retenue : **8/8** ont une latitude et une longitude.
+- Intersections confirmées par les données conservées : départ au rond-point
+  associé ; le point d’arrivée et les 6 sommets intermédiaires n’ont pas de
+  way transversal conservé ici. Ils ne sont pas étiquetés comme carrefours
+  nommés dans le jeu.
 - Voie porteuse de la géométrie : nommée **Avenue Lumumba** et référencée
   **RN1**.
 - Carrefour d’arrivée : le nom de l’axe croisé manque dans cette extraction ;

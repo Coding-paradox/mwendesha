@@ -1,0 +1,86 @@
+{
+  "id": "mwendesha-lumumba-v1",
+  "title": "Course d'essai · Avenue Lumumba",
+  "status": "prototype",
+  "attribution": "© OpenStreetMap contributors · ODbL 1.0",
+  "route": {
+    "key": "avenue-lumumba-rn1-roundabout-segment",
+    "name": "Avenue Lumumba · RN1",
+    "start": "Sortie du rond-point · Avenue Lumumba",
+    "finish": "Carrefour non nommé · à valider",
+    "distanceMeters": 642,
+    "routeSource": "https://www.openstreetmap.org/way/52253705",
+    "osmApiSource": "https://api.openstreetmap.org/api/0.6/way/52253705/full",
+    "osmWayId": 52253705,
+    "roundaboutWayId": 52253710,
+    "points": [
+      [27.4878289, -11.6617395],
+      [27.4878265, -11.6617103],
+      [27.4878024, -11.6613199],
+      [27.4877156, -11.6605479],
+      [27.4875624, -11.6589827],
+      [27.4875154, -11.6585774],
+      [27.4874027, -11.6573326],
+      [27.4872365, -11.6559603]
+    ],
+    "streets": [
+      { "name": "Avenue Lumumba · RN1", "startMeters": 0, "endMeters": 642 }
+    ]
+  },
+  "segments": [
+    {
+      "id": "lumumba-rn1-test-01",
+      "order": 1,
+      "fromMeters": 0,
+      "toMeters": 642,
+      "name": "Avenue Lumumba · RN1",
+      "validation": "confirmed_osm_geometry"
+    }
+  ],
+  "stops": [
+    {
+      "id": "pickup-demo-01",
+      "order": 1,
+      "kind": "pickup",
+      "name": "Point de prise provisoire · à valider",
+      "distanceMeters": 62,
+      "validation": "pending_local_confirmation",
+      "source": null
+    },
+    {
+      "id": "finish-demo-01",
+      "order": 2,
+      "kind": "dropoff",
+      "name": "Carrefour non nommé · à valider",
+      "distanceMeters": 642,
+      "validation": "pending_local_confirmation",
+      "source": null
+    }
+  ],
+  "missions": [
+    {
+      "id": "mission-demo-01",
+      "pickupStopId": "pickup-demo-01",
+      "dropoffStopId": "finish-demo-01",
+      "clientCount": 1,
+      "fareCdf": 1000,
+      "fareValidation": "À VALIDER · valeur de démonstration, pas un tarif local confirmé"
+    }
+  ],
+  "rivals": [
+    { "id": "rival-01", "startMeters": 12, "speedMetersPerSecond": 8.8, "laneOffsetMeters": 4.6 },
+    { "id": "rival-02", "startMeters": 24, "speedMetersPerSecond": 10.1, "laneOffsetMeters": -1.8 },
+    { "id": "rival-03", "startMeters": 38, "speedMetersPerSecond": 11.2, "laneOffsetMeters": -4.8 }
+  ],
+  "events": [],
+  "texts": {
+    "fr": {
+      "pickup": "Client au point de prise provisoire. Freine et arrête-toi près du repère.",
+      "dropoff": "Client à bord. Rejoins l'arrivée et immobilise le taxi.",
+      "finish": "Course terminée. Résultat enregistré sur cet appareil."
+    },
+    "swKat": {
+      "status": "À VALIDER par un locuteur lushois avant affichage."
+    }
+  }
+}

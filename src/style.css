@@ -257,3 +257,30 @@ button { color: inherit; font: inherit; }
   .speed-card { bottom: 63px; }
   .bottom-info { display: none; }
 }
+
+/* Course de taxi: course rank and stop action use the existing mission panel. */
+.race-summary { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; margin-top: 10px; padding-top: 8px; border-top: 1px solid #ffffff18; }
+.race-summary div { display: flex; flex-direction: column; gap: 3px; }
+.race-summary small { color: #aeb9ac; font-size: 7px; font-weight: 800; letter-spacing: .11em; }
+.race-summary b { color: #fff4dd; font-size: 13px; font-variant-numeric: tabular-nums; }
+.mission-action { width: 100%; margin-top: 9px; padding: 9px 12px; border: 1px solid #f1c553; border-radius: 10px; background: linear-gradient(145deg, #f3ca5e, #d9a934); color: #17211b; font-size: 9px; font-weight: 900; letter-spacing: .08em; cursor: pointer; }
+.mission-action:disabled { opacity: .62; cursor: default; }
+.mission-action[hidden] { display: none; }
+.finish-overlay { position: absolute; z-index: 10; inset: 0; display: grid; place-items: center; padding: 18px; background: #09120fd9; backdrop-filter: blur(8px); }
+.finish-overlay.hidden { display: none; }
+.finish-panel { width: min(430px, 100%); padding: 26px; border: 1px solid #ffffff2e; border-radius: 21px; background: #13211df5; box-shadow: 0 24px 80px #0008; }
+.finish-panel h2 { margin: 13px 0 18px; font-size: clamp(23px, 4vw, 32px); letter-spacing: -.04em; }
+.finish-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
+.finish-grid div { display: flex; flex-direction: column; gap: 5px; padding: 12px; border: 1px solid #ffffff17; border-radius: 12px; background: #ffffff08; }
+.finish-grid small { color: #aeb9ac; font-size: 8px; font-weight: 800; letter-spacing: .1em; }
+.finish-grid b { color: #f5c34e; font-size: 18px; font-variant-numeric: tabular-nums; }
+.finish-panel p { color: #c1c9bd; font-size: 11px; }
+.finish-panel .primary-button { width: 100%; }
+
+@media (pointer: coarse), (max-width: 760px) {
+  .race-summary { gap: 4px; margin-top: 8px; padding-top: 6px; }
+  .race-summary small { font-size: 6px; }
+  .race-summary b { font-size: 11px; }
+  .mission-action { margin-top: 7px; padding: 8px 9px; font-size: 8px; }
+  .finish-panel { padding: 20px; border-radius: 17px; }
+}

@@ -6,6 +6,7 @@ import {
     HemisphericLight,
     DirectionalLight,
     Color4,
+    Color3,
 } from "@babylonjs/core";
 
 export class MwendeshaScene {
@@ -21,19 +22,22 @@ export class MwendeshaScene {
         });
 
         this.scene = new Scene(this.engine);
-        this.scene.clearColor = new Color4(0.78, 0.84, 0.9, 1);
+        this.scene.clearColor = new Color4(0.78, 0.68, 0.5, 1);
+        this.scene.fogMode = Scene.FOGMODE_EXP2;
+        this.scene.fogColor = new Color3(0.78, 0.68, 0.5);
+        this.scene.fogDensity = 0.0022;
 
         this.camera = new ArcRotateCamera(
             "mwendeshaCamera",
             -Math.PI / 2,
-            Math.PI / 3,
-            40,
-            new Vector3(0, 0, 0),
+            1.32,
+            15,
+            new Vector3(0, 1.1, 0),
             this.scene
         );
         this.camera.attachControl(canvasElement, true);
-        this.camera.lowerRadiusLimit = 5;
-        this.camera.upperRadiusLimit = 200;
+        this.camera.lowerRadiusLimit = 9;
+        this.camera.upperRadiusLimit = 24;
         this.camera.wheelDeltaPercentage = 0.02;
 
         const hemiLight = new HemisphericLight("hemiLight", new Vector3(0, 1, 0), this.scene);

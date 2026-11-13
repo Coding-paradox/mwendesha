@@ -10,9 +10,9 @@ La cible artistique du premier niveau est un réalisme stylisé, construit à pa
 
 - Scène 3D Babylon.js. Le joueur conduit une citadine compacte jaune à hayon ; son GLB actuel est provisoire **NON VALIDÉ**. Une fourgonnette/minibus jaune inspirée d’un Hiace est conservée dans le trafic secondaire.
 - Tronçon OSM de l’Avenue Lumumba (RN1), environ 642 m, de la sortie du rond-point vers le nœud OSM 664607359. La mini-carte et la conduite utilisent maintenant ces huit points GPS ; le nom de la rue au carrefour d’arrivée reste **À VALIDER**.
-- Les dalles de route Kenney `road-straight.glb` font 1 × 1 dans leur GLB et sont répétées avec un pas identique à leur échelle. Les bâtiments commerciaux et deux arbres sont chargés depuis des GLB Kenney CC0.
+- Les dalles de route et deux arbres restent des GLB Kenney CC0. Les anciennes façades Kenney ont été retirées du corridor : le modèle fourni `public/assets/models/midcity_buildings.glb` est chargé via `SceneLoader.ImportMeshAsync` et placé en trois groupes le long du tronçon. Le GLB attribue le modèle à Daniel Zhabotinsky sous CC BY 4.0 ; voir le registre de sources ci-dessous.
 - Le sol latéritique utilise une texture périodique légère générée en mémoire. Le kit Roads fourni n’a pas de texture dédiée au sol ; ses images sont des palettes de couleurs.
-- Les façades et la végétation restent des ressources génériques stylisées ; leur présence n’est pas un relevé géospatial ou architectural de Lubumbashi.
+- Le modèle MidCity, les arbres et leur placement restent génériques ; ils ne constituent pas un relevé architectural de Lubumbashi.
 - Tableau de destination et panneaux d’avenues pour matérialiser une course urbaine.
 - Suivi de la voie et de la distance restante dans l’interface de course.
 - Contrôles clavier PC et tactiles, carburant, solde en FC, pause et sauvegarde IndexedDB.

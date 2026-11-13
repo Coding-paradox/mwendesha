@@ -9,7 +9,7 @@ import { TransformNode } from '@babylonjs/core/Meshes/transformNode';
 import { Color3 } from '@babylonjs/core/Maths/math.color';
 import { Scene } from '@babylonjs/core/scene';
 import '@babylonjs/loaders/glTF';
-import taxiModelUrl from '../assets/models/lushois-yellow-hatchback.glb?url';
+import taxiModelUrl from '../assets/free_low_poly_vehicles_packby_rgsdev.glb?url';
 
 export interface TrafficVehicle { root: TransformNode; speed: number }
 
@@ -27,13 +27,63 @@ export interface LoadedTaxiModel {
 
 export async function loadTaxiGlb(scene: Scene, parent: TransformNode): Promise<LoadedTaxiModel> {
   const result = await ImportMeshAsync(taxiModelUrl, scene, { meshNames: '' });
-  const importedMeshes = new Set(result.meshes);
-  const roots = result.meshes.filter((mesh) => !(mesh.parent && importedMeshes.has(mesh.parent as AbstractMesh)));
-  roots.forEach((mesh) => { mesh.parent = parent; });
-  const cameraTarget = result.meshes.find((mesh) => mesh.getTotalVertices() > 0) ?? roots[0];
-  if (!cameraTarget) throw new Error('Le GLB du taxi ne contient aucun maillage.');
-  parent.getChildMeshes().filter((mesh) => !importedMeshes.has(mesh)).forEach((mesh) => mesh.dispose());
+  const taxiRoots = [
+    ...result.transformNodes.filter((node) => node.name === 'Taxi' || node.name.startsWith('Taxi wheel ')),
+    ...result.meshes.filter((mesh) => mesh.name === 'Taxi' || mesh.name.startsWith('Taxi wheel ')),
+  ];
+  if (!taxiRoots.some((node) => node.name === 'Taxi')) {
+    throw new Error('Le GLB de véhicules ne contient pas le modèle Taxi attendu.');
+  }
+  taxiRoots.forEach((node) => node.setParent(parent, true));
+
+  const isInTaxi = (node: AbstractMesh | TransformNode): boolean => {
+    let current: AbstractMesh | TransformNode | null = node;
+    while (current) {
+      if (current === parent) return true;
+      current = current.parent as AbstractMesh | TransformNode | null;
+    }
+    return false;
+  };
+  result.meshes.filter((mesh) => !isInTaxi(mesh)).forEach((mesh) => {
+    mesh.setParent(null);
+    mesh.dispose(true, false);
+  });
+  result.transformNodes.filter((node) => node !== parent && !isInTaxi(node)).forEach((node) => {
+    node.setParent(null);
+    node.dispose(true, false);
+  });
+
+  parent.position.set(0, 0, 0);
+  parent.rotation.set(0, 0, 0);
+  parent.rotationQuaternion = null;
+  parent.computeWorldMatrix(true);
+  const modelMeshes = parent.getChildMeshes(false);
+  if (modelMeshes.length === 0) throw new Error('Le GLB Taxi ne contient aucun maillage exploitable.');
+  let minZ = Infinity;
+  let maxZ = -Infinity;
+  for (const mesh of modelMeshes) {
+    mesh.computeWorldMatrix(true);
+    minZ = Math.min(minZ, mesh.getBoundingInfo().boundingBox.minimumWorld.z);
+    maxZ = Math.max(maxZ, mesh.getBoundingInfo().boundingBox.maximumWorld.z);
+  }
+  const length = maxZ - minZ;
+  if (length > 0.01) parent.scaling.setAll(3.8 / length);
+  const cameraTarget = modelMeshes.find((mesh) => mesh.name.toLowerCase().includes('taxi_body yellow')) ?? modelMeshes[0]!;
   return { cameraTarget, animationGroups: result.animationGroups };
+}
+
+/** Import one licensed yellow taxi and clone that GLB for the three racers. */
+export async function loadTaxiFleet(scene: Scene, playerModel: TransformNode, rivalModels: TransformNode[]): Promise<void> {
+  await loadTaxiGlb(scene, playerModel);
+  rivalModels.forEach((model, index) => {
+    const clone = playerModel.clone(`rival-taxi-model-${index + 1}`, model);
+    if (!clone) throw new Error(`Impossible de cloner le taxi rival ${index + 1}.`);
+    clone.position.set(0, 0, 0);
+    clone.rotation.set(0, 0, 0);
+    clone.rotationQuaternion = null;
+    clone.scaling.copyFrom(playerModel.scaling);
+    clone.setEnabled(true);
+  });
 }
 
 export function signMat(scene: Scene, label: string, background: string): StandardMaterial {

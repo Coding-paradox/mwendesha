@@ -7,7 +7,7 @@ import { Vector3 } from '@babylonjs/core/Maths/math.vector';
 import { Scene } from '@babylonjs/core/scene';
 import { MeshBuilder } from '@babylonjs/core/Meshes/meshBuilder';
 import { avenueLumumbaRoute } from '../data/routes/avenueLumumba';
-import { closestRouteRatio, routeAt, routeWorldLength } from './route';
+import { routeAt, routeWorldLength } from './route';
 import { loadTaxiGlb } from './vehicles';
 import { populateKitCorridor } from './cityKit';
 // Si tu as toujours ton fichier world.ts, décommente cette ligne. Sinon, on utilise la boîte de secours.
@@ -94,9 +94,6 @@ export function createGameWorld(canvas: HTMLCanvasElement, callbacks: RideCallba
       if (fuel <= 0.1) velocity = Math.min(velocity, 2.5);
       if (input.horn > 0 && hornElapsed <= 0) { callbacks.onHorn(); hornElapsed = 0.7; }
       hornElapsed = Math.max(0, hornElapsed - delta);
-      
-      const targetRatio = phase === 'pickup' ? pickupRatio : 1;
-      const targetPose = routeAt(targetRatio);
       
       // (Optionnel) Gestion du marqueur de client si tu l'as
       // marker.position.x = targetPose.point.x; marker.position.z = targetPose.point.z;

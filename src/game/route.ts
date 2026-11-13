@@ -1,7 +1,7 @@
-import { Vector3 } from '@babylonjs/core/Maths/math.vector';
-import { avenueLumumbaRoute } from '../data/routes/avenueLumumba';
+import { Vector3 } from '@babylonjs/core/Maths/math.vector.js';
+import { avenueLumumbaRoute } from '../data/routes/avenueLumumba.ts';
 
-// Projection locale des coordonnées OSM dans le plan X/Z du jeu (1 unité ≈ 8 m).
+// Projection locale métrique des coordonnées OSM dans le plan X/Z du jeu (1 unité = 1 m).
 export const routeWorld = avenueLumumbaRoute.points.map(([longitude, latitude]) => new Vector3(
   (longitude - avenueLumumbaRoute.points[0][0]) * 111320 * Math.cos(avenueLumumbaRoute.points[0][1] * Math.PI / 180),
   0,
@@ -32,7 +32,7 @@ export function closestRouteRatio(position: Vector3): number {
     const a = routeWorld[i - 1]!; const b = routeWorld[i]!; const segment = b.subtract(a);
     const t = Math.max(0, Math.min(1, Vector3.Dot(position.subtract(a), segment) / Math.max(segment.lengthSquared(), 0.001)));
     const candidate = a.add(segment.scale(t)); const distance = Vector3.DistanceSquared(position, candidate);
-    if (distance < bestDistance) { bestDistance = distance; bestAlong = routeLengths[i - 1]! + routeLengths[i]! * 0 + segment.length() * t; }
+    if (distance < bestDistance) { bestDistance = distance; bestAlong = routeLengths[i - 1]! + segment.length() * t; }
   }
   return bestAlong / routeWorldLength;
 }
